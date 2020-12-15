@@ -1,6 +1,6 @@
-.vscode/*
-env/*
-.idea/*
+.vscode/
+env/
+.idea/
 
 # Created by .ignore support plugin (hsz.mobi)
 ### VirtualEnv template
