@@ -177,7 +177,7 @@ class AuthUserUserPermissions(models.Model):
         unique_together = (('user', 'permission'),)
 
 
-class CoQuan(models.Model):
+class Co_Quan(models.Model):
     ten_co_quan = models.CharField(primary_key=True, max_length=50)
     dia_chi = models.CharField(max_length=100, blank=True, null=True)
     tinh = models.CharField(max_length=20, blank=True, null=True)
@@ -293,7 +293,7 @@ class NganhNghe(models.Model):
         db_table = 'nganh_nghe'
 
 
-class SinhVien(models.Model):
+class Sinh_Vien(models.Model):
     ma_sinh_vien = models.CharField(primary_key=True, max_length=10)
     ho_ten = models.CharField(max_length=30, blank=True, null=True)
     ngay_sinh = models.CharField(max_length=10, blank=True, null=True)
@@ -304,7 +304,7 @@ class SinhVien(models.Model):
     hoc_luc = models.CharField(max_length=10, blank=True, null=True)
     ma_nganh_dao_tao = models.ForeignKey(NganhDaoTao, models.DO_NOTHING, db_column='ma_nganh_dao_tao', blank=True, null=True)
     ma_nganh_nghe = models.ForeignKey(NganhNghe, models.DO_NOTHING, db_column='ma_nganh_nghe', blank=True, null=True)
-    ten_co_quan = models.ForeignKey(CoQuan, models.DO_NOTHING, db_column='ten_co_quan', blank=True, null=True)
+    ten_co_quan = models.ForeignKey(Co_Quan, models.DO_NOTHING, db_column='ten_co_quan', blank=True, null=True)
 
     class Meta:
         managed = False
