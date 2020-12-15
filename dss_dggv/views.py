@@ -5,11 +5,14 @@ from django.http import HttpResponse
 
 from  .models import Giangvien
 
+import json
+
 def gv_detail_view(request):
 
     return HttpResponse();
 
 def index(request):
-    object = Giangvien.objects.filter(ma_nganh="MAT130");
-    print(object[0].ma_nganh);
+    object = Giangvien.objects.filter(ma_nganh="MAT130").values('ten', 'ma_nganh');
+    res = json.dumps(list(object), ensure_ascii=False).encode('utf8')
+    print(res.decode())
     return HttpResponse("Hello, world. You're at the polls index.")
