@@ -8,6 +8,10 @@
 from django.db import models
 
 
+# Create your models here.
+ 
+
+
 class Chuyennganh(models.Model):
     manganh = models.CharField(db_column='MaNganh', primary_key=True, max_length=10)  # Field name made lowercase.
     nhomnganh = models.ForeignKey('Nhomnganh', models.DO_NOTHING, db_column='NhomNganh')  # Field name made lowercase.
@@ -318,3 +322,4 @@ class TruongThong(models.Model):
     class Meta:
         managed = False
         db_table = 'truong_Thong'
+

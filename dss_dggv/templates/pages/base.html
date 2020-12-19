@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <title>SuperAdmin </title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+    <style>
+        body {
+            /* background-image: url("/img/stock.png"); */
+            background-size: cover;
+            margin: 0;
+            padding-top: 69px;
+            height: 100%;
+            width: 100%;
+        }
+        
+        div {
+            display: block;
+        }
+        
+        .main_wrapper {
+            margin: 2px 1em 2em 0 !important;
+            padding: 0 2em 2em 2em;
+        }
+        
+        tbody td,
+        thead th {
+            padding: 16px 10px !important;
+        }
+        
+        thead {
+            margin-top: -2px;
+        }
+        
+        #mainLeft {
+            float: left;
+            padding: 0 1em 1em 1em;
+        }
+        
+        #mainRight {
+            /* width: 80%; */
+            float: right;
+            padding: 1px 0 2em 1em;
+        }
+        
+        .boxLeft {
+            margin-bottom: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, .1);
+        }
+        
+        .boxLeftC {
+            margin-bottom: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, .1);
+        }
+        
+        .styleBox {
+            padding: 10px 0 20px 30px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, .1);
+        }
+        
+        a u {
+            color: black;
+        }
+        
+        .leftTitle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 24px;
+            padding: 0 12px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #111;
+            background-color: transparent!important;
+            line-height: 24px;
+        }
+        
+        .form-group {
+            margin-bottom: 10px;
+            /* min-height: 32px; */
+        }
+        
+        .head-right {
+            width: 100%;
+            margin: 0 !important;
+        }
+        
+        .search-box {
+            display: inline-block;
+            /* width: 60%; */
+            height: 40px;
+            border-radius: 3px;
+            padding: 4px 55px 4px 15px;
+            position: relative;
+            background: #fff;
+            border: 1px solid #ddd;
+            -webkit-transition: all 200ms ease-in-out;
+            -moz-transition: all 200ms ease-in-out;
+            transition: all 200ms ease-in-out;
+        }
+        
+        .search-box.hovered,
+        .search-box:hover,
+        .search-box:active {
+            border: 1px solid #aaa;
+        }
+        
+        .search-box input[type=text] {
+            border: none;
+            box-shadow: none;
+            display: inline-block;
+            padding: 0;
+            background: transparent;
+        }
+        
+        .search-box input[type=text]:hover,
+        .search-box input[type=text]:focus,
+        .search-box input[type=text]:active {
+            box-shadow: none;
+        }
+        
+        .search-box .search-btn {
+            position: absolute;
+            right: 2px;
+            top: 2px;
+            color: #aaa;
+            border-radius: 3px;
+            font-size: 21px;
+            padding: 5px 10px 1px;
+            -webkit-transition: all 200ms ease-in-out;
+            -moz-transition: all 200ms ease-in-out;
+            transition: all 200ms ease-in-out;
+        }
+        
+        .search-box .search-btn:hover {
+            color: black;
+            background-color: white;
+        }
+        
+        .menuRight {
+            float: right;
+        }
+        
+        .btn-filter {
+            margin: 0 1em;
+            width: 70%;
+        }
+        
+        .dropbtn {
+            /* background-color: #3498DB; */
+            color: black;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .dropbtn:hover,
+        .dropbtn:focus {
+            background-color: gray;
+        }
+        
+        .dropbtn:hover,
+        .dropbtn:focus {
+            background-color: gray;
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            /* overflow: auto; */
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            overflow: hidden!important;
+            transform: none!important;
+            max-height: inherit!important;
+            transition: inherit!important;
+        }
+        
+        .dropdown-content a {
+            color: black;
+            padding: 5px 10px;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .dropdown a:hover {
+            background-color: #ddd;
+        }
+        
+        .show {
+            display: block;
+        }
+        /* .row {
+    margin-top: 28px;
+    padding-left: 16px;
+    padding-right: 10px;
+} */
+        
+        .modal-header {
+            background-color: #eeeeee;
+        }
+        
+        body {
+            background-image: url("/img/stock.png");
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
+        
+        div {
+            display: block;
+        }
+        
+        #mainLeft {
+            /* width: 20%; */
+            float: left;
+            padding: 1em;
+        }
+        
+        .boxLeft {
+            margin-bottom: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, .1);
+        }
+        /* .boxLeftC {
+            margin-bottom: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, .1);
+        } */
+        
+        .styleBox {
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, .1);
+        }
+        
+        a u {
+            color: black;
+        }
+        
+        .leftTitle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 24px;
+            padding: 0 12px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #111;
+            background-color: transparent!important;
+            line-height: 24px;
+        }
+        
+        .form-group {
+            margin-bottom: 10px;
+            min-height: 32px;
+        }
+        
+        .search-box.hovered,
+        .search-box:hover,
+        .search-box:active {
+            border: 1px solid #aaa;
+        }
+        
+        .search-box input[type=text] {
+            border: none;
+            box-shadow: none;
+            display: inline-block;
+            /* padding-top: 15px; */
+            background: transparent;
+        }
+        
+        .search-box input[type=text]:hover,
+        .search-box input[type=text]:focus,
+        .search-box input[type=text]:active {
+            box-shadow: none;
+        }
+        
+        .search-box .search-btn {
+            position: absolute;
+            right: 2px;
+            top: 2px;
+            color: #aaa;
+            border-radius: 3px;
+            font-size: 21px;
+            padding: 5px 10px 1px;
+            -webkit-transition: all 200ms ease-in-out;
+            -moz-transition: all 200ms ease-in-out;
+            transition: all 200ms ease-in-out;
+        }
+        
+        .search-box .search-btn:hover {
+            color: black;
+            background-color: white;
+        }
+        
+        .menuRight {
+            float: right;
+        }
+        /* .add-user {
+                float: right;
+                margin-right: 10px;
+            } */
+        
+        .dropbtn {
+            /* background-color: #3498DB; */
+            color: black;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .dropbtn:hover,
+        .dropbtn:focus {
+            background-color: gray;
+        }
+        
+        .dropbtn:hover,
+        .dropbtn:focus {
+            background-color: gray;
+        }
+        
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            overflow: auto;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            overflow: hidden!important;
+            transform: none!important;
+            max-height: inherit!important;
+            transition: inherit!important;
+        }
+        
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .dropdown a:hover {
+            background-color: #ddd;
+        }
+        
+        .show {
+            display: block;
+        }
+        
+        .show_table {
+            position: relative;
+            margin-top: 28px;
+            /* padding-left: 16px; */
+            padding-right: auto;
+            height: 470px;
+        }
+        
+        .modal-header {
+            background-color: #eeeeee;
+        }
+        
+        .col-md-6 {
+            float: left;
+            width: 50%
+        }
+        
+        .scroll_overflow {
+            overflow-y: scroll;
+            max-height: 247px;
+        }
+        
+        table {
+            text-align: center;
+        }
+        
+        table th {
+            background-color: rgb(204, 199, 199);
+            max-height: 50px;
+            position: sticky;
+            top: 0;
+        }
+        
+        .form-group {
+            text-align: left;
+        }
+        
+        .info_user {
+            margin: 20px 80px 0 80px;
+        }
+        
+        .header_content {
+            background-color: rgb(204, 199, 199);
+            height: 220px;
+            padding: 20px 30px 30px 30px;
+        }
+        
+        .search-form {
+            width: 405px;
+            height: 30px;
+        }
+        
+        .filter {
+            padding-top: 2px;
+            padding-bottom: 2px;
+        }
+        
+        .design_label {
+            padding-left: 10px;
+        }
+        
+        .pagination_style {
+            float: right;
+            padding-right: 20px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+        <div class="header_content">
+            <center>
+                <div style="padding-bottom: 15px;">
+                    <h2>HỆ THỐNG TRỢ GIÚP GIÁO VIÊN
+                        <br> CÔNG NGHỆ THÔNG TIN</h2>
+                </div>
+                <div class="search-box">
+
+                    <form class="search-form" action=""> <input class="form-control" placeholder="Search ..." type="text">
+                        <button class="btn btn-link search-btn"><i class="fas fa-search" style="color:black; "></i></button>
+                    </form>
+                </div>
+            </center>
+        </div>
+    </header>
+
+    <div class="container-fluid main_wrapper">
+
+        <div class="col-lg-2 col-md-2" id="mainLeft">
+            <div class="filter-report">
+                <div class="boxLeft">
+                    <h1 class="leftTitle">FILTER</h1>
+                    <div class="styleBox">
+
+                        <form action="">
+
+                            <div class="filter">
+                                <div class="row">
+                                    <label class="design_label">Giới tính: </label>
+                                    <div class="form-group">
+
+                                        <div class="col-md-8 ">
+                                            <select class="form-control">
+                                                <option>Chọn dữ liệu</option>
+                                                <option>Nam</option>
+                                                <option>Nữ</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <button type="button" class="btn btn-secondary btn-sm">Lọc</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="filter">
+                                <div class="row">
+                                    <label class="design_label">Học vị :</label>
+                                    <div class="form-group">
+
+                                        <div class="col-md-8">
+                                            <select class="form-control" id="exampleFormControlSelect1">
+                                                <option>Chọn dữ liệu</option>
+                                                <option>Cử nhân</option>
+                                                <option>Tiến sĩ</option>
+                                                <option>Thạc sĩ</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <button type="button" class="btn btn-secondary btn-sm">Lọc</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="filter">
+                                <div class="row">
+                                    <label class="design_label">Học hàm: </label>
+                                    <div class="form-group">
+
+                                        <div class="col-md-8">
+                                            <select class="form-control" id="exampleFormControlSelect1">
+                                                <option>Chọn dữ liệu</option>
+                                                <option>Giáo sư</option>
+                                                <option>Phó giáo sư</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <button type="button" class="btn btn-secondary btn-sm">Lọc</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="filter">
+                                <div class="row">
+                                    <label class="design_label">Mã ngành: </label>
+                                    <div class="form-group">
+
+                                        <div class="col-md-8">
+                                            <select class=" form-control " size="3 " onfocus='this.size=3;' onblur='this.size=1;' onchange='this.size=1; this.blur();'>
+                                                <option>Chọn dữ liệu</option>
+                                                <option>MT123</option>
+                                                <option>MT124</option>
+                                                <option>MT125</option>
+                                                <option>MT126</option>
+                                                <option>MT127</option>
+                                                <option>MT129</option>
+                                                <option>MT130</option>
+                                                <option>MT130</option>
+                                                <option>MT137</option>
+                                                <option>MT141</option>
+                                                <option>MT146</option>
+                                                <option>MT147</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4 ">
+                                            <button type="button " class="btn btn-secondary btn-sm ">Lọc</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="filter ">
+                                <div class="row ">
+                                    <label class="design_label">Địa chỉ: </label>
+                                    <div class="form-group ">
+
+                                        <div class="col-md-8 ">
+                                            <select class="form-control " size="3 " onfocus='this.size=3;' onblur='this.size=1;' onchange='this.size=1; this.blur();'>
+                                                <option>Chọn dữ liệu</option>
+                                                <option>Hà Nội</option>
+                                                <option>Hồ Chí Minh</option>
+                                                <option>Cần Thơ</option>
+                                                <option>Nam Định</option>
+                                                <option>Kon Tum</option>
+                                                <option>Bình Dương</option>
+                                                <option>Phú Thọ</option>
+                                                <option>Seoul Korea</option>
+                                                <option>Đà Nẵng</option>
+                                                <option>Vĩnh Phúc</option>
+                                                <option>Bạc Liêu</option>
+                                                <option>Thái Nguyên</option>
+                                                <option>Hải Phòng</option>
+                                                <option>Quảng Ngãi</option>
+                                                <option>Hà Tĩnh</option>
+                                                <option>Nghệ An</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4 ">
+                                            <button type="button " class="btn btn-secondary btn-sm ">Lọc</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </form>
+
+                    </div>
+                </div>
+
+                <div class="row justify-content-center ">
+                    <button class="btn btn-lg btn-outline-dark btn-filter "><span><i class="fas fa-search " style="color:black; "></i></span>&nbsp Lọc tất cả</button>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-10 col-md-10 " id="mainRight ">
+
+            <div class="show_table">
+                <div class="table-responsive ">
+                    <div class="scroll_overflow ">
+                        <table class="table table-hover ">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox"></th>
+                                    <th>Tên giảng viên</th>
+                                    <th>Năm sinh</th>
+                                    <th>Địa chỉ</th>
+                                    <th>Ảnh</th>
+                                    <th>Giới tính</th>
+                                    <th>Tên_ĐH</th>
+                                    <th>Mã ngành</th>
+                                    <th>Học vị</th>
+                                    <th>Học hàm</th>
+                                    <th>Năm_tn_dh</th>
+                                    <th>Đánh giá</th>
+                                </tr>
+                            </thead>
+
+                            <tbody style=" background-color: white; ">
+
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>3</td>
+                                    <td>4</td>
+                                    <td>5</td>
+                                    <td>6</td>
+                                    <td>7</td>
+                                    <td>8</td>
+                                    <td>9</td>
+                                    <td>10</td>
+                                    <td>
+                                        <!-- <a href=" " style="color:black;margin-left:5px; font-size:20px; " data-toggle="modal" data-target="#modal_danh_gia"><i class="fas fa-edit"></i></a> -->
+                                        <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#modal_danh_gia">
+                                        Đánh giá
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!--  Phân trang -->
+            <div class="pagination_style">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination page_color">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <div class="modal fade" id="modal_danh_gia" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">ĐÁNH GIÁ GIẢNG VIÊN</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group green-border-focus">
+                        <textarea class="form-control" id="exampleFormControlTextarea5" rows="10"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+
+</html>

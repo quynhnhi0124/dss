@@ -14,9 +14,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+<<<<<<< HEAD
 from django.urls import path, include
+from django.conf.urls import url
+from dss_dggv import views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    url('home/',views.homepage),
+]
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path('dss_dggv/', include('dss_dggv.urls')),
+
 ]

@@ -1,5 +1,8 @@
 from django.shortcuts import render
 
+
+
+
 # Create your views here.
 from django.http import HttpResponse
 
@@ -7,6 +10,10 @@ from  .models import Giangvien
 
 import json
 
+def homepage(request):
+    return render(request, "pages/base.html")
+ 
+ 
 def gv_detail_view(request):
 
     return HttpResponse();
@@ -16,3 +23,4 @@ def index(request):
     res = json.dumps(list(object), ensure_ascii=False).encode('utf8')
     print(res.decode())
     return HttpResponse("Hello, world. You're at the polls index.")
+
