@@ -77,7 +77,6 @@ WSGI_APPLICATION = 'dss.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'sql_server.pyodbc',
         'NAME': 'dss',
         'USER':'dssadmin',
         'PASSWORD':'Dss@1234',
