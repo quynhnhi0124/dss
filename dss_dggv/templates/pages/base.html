@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DSS</title>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+        <style>
+            body {
+                background-size: cover;
+                margin: 0;
+                padding-top: 69px;
+                height: 100%;
+                width: 100%;
+            }
+
+            div {
+                display: block;
+            }
+
+            .main_wrapper {
+                margin: 2px 1em 2em 0 !important;
+                padding: 0 2em 2em 2em;
+            }
+
+            tbody td,
+            thead th {
+                padding: 16px 10px !important;
+            }
+
+            thead {
+                margin-top: -2px;
+            }
+
+            #mainLeft {
+                float: left;
+                padding: 0 1em 1em 1em;
+            }
+
+            #mainRight {
+                /* width: 80%; */
+                float: right;
+                padding: 1px 0 2em 1em;
+            }
+
+            .boxLeft {
+                margin-bottom: 15px;
+                background-color: #fff;
+                border-radius: 5px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, .1);
+            }
+
+            .boxLeftC {
+                margin-bottom: 15px;
+                background-color: #fff;
+                border-radius: 5px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, .1);
+            }
+
+            .styleBox {
+                padding: 10px 0 20px 30px;
+                background-color: #fff;
+                border-radius: 5px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, .1);
+            }
+
+            a u {
+                color: black;
+            }
+
+            .leftTitle {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                height: 24px;
+                padding: 0 12px;
+                font-size: 13px;
+                font-weight: 700;
+                color: #111;
+                background-color: transparent!important;
+                line-height: 24px;
+            }
+
+            .form-group {
+                margin-bottom: 10px;
+                /* min-height: 32px; */
+            }
+
+            .head-right {
+                width: 100%;
+                margin: 0 !important;
+            }
+
+            .search-box {
+                display: inline-block;
+                /* width: 60%; */
+                height: 40px;
+                border-radius: 3px;
+                padding: 4px 55px 4px 15px;
+                position: relative;
+                background: #fff;
+                border: 1px solid #ddd;
+                -webkit-transition: all 200ms ease-in-out;
+                -moz-transition: all 200ms ease-in-out;
+                transition: all 200ms ease-in-out;
+            }
+
+            .search-box.hovered,
+            .search-box:hover,
+            .search-box:active {
+                border: 1px solid #aaa;
+            }
+
+            .search-box input[type=text] {
+                border: none;
+                box-shadow: none;
+                display: inline-block;
+                padding: 0;
+                background: transparent;
+            }
+
+            .search-box input[type=text]:hover,
+            .search-box input[type=text]:focus,
+            .search-box input[type=text]:active {
+                box-shadow: none;
+            }
+
+            .search-box .search-btn {
+                position: absolute;
+                right: 2px;
+                top: 2px;
+                color: #aaa;
+                border-radius: 3px;
+                font-size: 21px;
+                padding: 5px 10px 1px;
+                -webkit-transition: all 200ms ease-in-out;
+                -moz-transition: all 200ms ease-in-out;
+                transition: all 200ms ease-in-out;
+            }
+
+            .search-box .search-btn:hover {
+                color: black;
+                background-color: white;
+            }
+
+            .menuRight {
+                float: right;
+            }
+
+            .btn-filter {
+                margin: 0 1em;
+                width: 70%;
+            }
+
+            .dropbtn {
+                /* background-color: #3498DB; */
+                color: black;
+                padding: 16px;
+                font-size: 16px;
+                border: none;
+                cursor: pointer;
+            }
+
+            .dropbtn:hover,
+            .dropbtn:focus {
+                background-color: gray;
+            }
+
+            .dropbtn:hover,
+            .dropbtn:focus {
+                background-color: gray;
+            }
+
+            .dropdown {
+                position: relative;
+                display: inline-block;
+            }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #f1f1f1;
+                min-width: 160px;
+                /* overflow: auto; */
+                box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                z-index: 1;
+                overflow: hidden!important;
+                transform: none!important;
+                max-height: inherit!important;
+                transition: inherit!important;
+            }
+
+            .dropdown-content a {
+                color: black;
+                padding: 5px 10px;
+                text-decoration: none;
+                display: block;
+            }
+
+            .dropdown a:hover {
+                background-color: #ddd;
+            }
+
+            .show {
+                display: block;
+            }
+
+            .modal-header {
+                background-color: #eeeeee;
+            }
+
+            body {
+                background-image: url("/img/stock.png");
+                background-size: cover;
+                margin: 0;
+                padding: 0;
+                height: 100%;
+                width: 100%;
+            }
+
+            div {
+                display: block;
+            }
+
+            #mainLeft {
+                /* width: 20%; */
+                float: left;
+                padding: 1em;
+            }
+
+            .boxLeft {
+                margin-bottom: 15px;
+                background-color: #fff;
+                border-radius: 5px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, .1);
+            }
+
+            .styleBox {
+                padding: 15px;
+                background-color: #fff;
+                border-radius: 5px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, .1);
+            }
+
+            a u {
+                color: black;
+            }
+
+            .leftTitle {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                height: 24px;
+                padding: 0 12px;
+                font-size: 13px;
+                font-weight: 700;
+                color: #111;
+                background-color: transparent!important;
+                line-height: 24px;
+            }
+
+            .form-group {
+                margin-bottom: 10px;
+                min-height: 32px;
+            }
+
+            .search-box {
+                display: inline-block;
+                width: 30%;
+                border-radius: 3px;
+                padding: 4px 55px 4px 15px;
+                position: relative;
+                background: #fff;
+                border: 1px solid #ddd;
+                -webkit-transition: all 200ms ease-in-out;
+                -moz-transition: all 200ms ease-in-out;
+                transition: all 200ms ease-in-out;
+            }
+
+            .search-box.hovered, .search-box:hover, .search-box:active {
+            border: 1px solid #aaa;
+            }
+
+            .search-box input[type=text] {
+                border: none;
+                box-shadow: none;
+                display: inline-block;
+                padding: 0;
+                background: transparent;
+            }
+
+            .search-box input[type=text]:hover, .search-box input[type=text]:focus, .search-box input[type=text]:active {
+                box-shadow: none;
+            }
+
+            .search-box .search-btn {
+                position: absolute;
+                right: 2px;
+                top: 1px;
+                color: #009879;
+                border-radius: 3px;
+                font-size: 21px;
+                padding: 3px 10px 1px;
+                -webkit-transition: all 200ms ease-in-out;
+                -moz-transition: all 200ms ease-in-out;
+                transition: all 200ms ease-in-out;
+            }
+
+            .search-box .search-btn:hover {
+                color: #fff;
+                background-color: #009879;
+            }
+
+            .menuRight {
+                float: right;
+            }
+
+            .dropbtn {
+                /* background-color: #3498DB; */
+                color: black;
+                padding: 16px;
+                font-size: 16px;
+                border: none;
+                cursor: pointer;
+            }
+
+            .dropbtn:hover,
+            .dropbtn:focus {
+                background-color: gray;
+            }
+
+            .dropbtn:hover,
+            .dropbtn:focus {
+                background-color: gray;
+            }
+
+            .dropdown {
+                position: relative;
+                display: inline-block;
+            }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #f1f1f1;
+                min-width: 160px;
+                overflow: auto;
+                box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                z-index: 1;
+                overflow: hidden!important;
+                transform: none!important;
+                max-height: inherit!important;
+                transition: inherit!important;
+            }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+            .dropdown a:hover {
+                background-color: #ddd;
+            }
+
+            .show {
+                display: block;
+            }
+
+            .show_table {
+                position: relative;
+                margin-top: 12px;
+                padding-right: auto;
+                height: 470px;
+            }
+
+            .modal-header {
+                background-color: #eeeeee;
+            }
+
+            .col-md-6 {
+                float: left;
+                width: 50%
+            }
+
+            .scroll_overflow {
+                overflow-y: scroll;
+                max-height: 400px;
+            }
+
+            table {
+                text-align: center;
+            }
+
+            .form-group {
+                text-align: left;
+            }
+
+            .info_user {
+                margin: 20px 80px 0 80px;
+            }
+
+            .header_content {
+                background-color: #009879;
+                height: 190px;
+                padding: 20px 30px 30px 30px;
+            }
+
+            .search-form {
+                width: 405px;
+                height: 30px;
+            }
+
+            .filter {
+                padding-top: 2px;
+                padding-bottom: 2px;
+            }
+
+            .design_label {
+                padding-left: 10px;
+            }
+
+            .pagination_style {
+                float: right;
+                padding-right: 20px;
+            }
+
+            body {
+                overflow-x: hidden;
+                font-family: 'Roboto', sans-serif;
+                font-size: 16px;
+            }
+
+            /* Toggle Styles */
+
+            #viewport {
+                padding-left: 250px;
+                -webkit-transition: all 0.5s ease;
+                -moz-transition: all 0.5s ease;
+                -o-transition: all 0.5s ease;
+                transition: all 0.5s ease;
+            }
+
+            #content {
+                width: 100%;
+                position: relative;
+                margin-right: 0;
+            }
+
+            /* Sidebar Styles */
+
+            #sidebar {
+                z-index: 1000;
+                position: absolute;
+                left: 250px;
+                width: 250px;
+                height: 100%;
+                margin-left: -250px;
+                overflow-y: auto;
+                background: #009879;
+                -webkit-transition: all 0.5s ease;
+                -moz-transition: all 0.5s ease;
+                -o-transition: all 0.5s ease;
+                transition: all 0.5s ease;
+            }
+
+            #sidebar header {
+                background-color: #267565;
+                font-size: 20px;
+                line-height: 52px;
+                text-align: center;
+            }
+
+            #sidebar header a {
+                color: #fff;
+                display: block;
+                text-decoration: none;
+            }
+
+            #sidebar header a:hover {
+                color: #fff;
+            }
+
+            #sidebar .nav{
+
+            }
+
+            #sidebar .nav a{
+                background: none;
+                border-bottom: 1px solid #2d7a6a;
+                color: #CFD8DC;
+                font-size: 14px;
+                padding: 16px 24px;
+            }
+
+            #sidebar .nav a:hover{
+                background: none;
+                color: #ECEFF1;
+            }
+
+            #sidebar .nav a i{
+                margin-right: 16px;
+            }
+
+            #sidebar .btn {
+                width: 100px;
+            }
+        </style>
+
+    </head>
+
+    <body>
+
+        <header>
+            <div class="header_content">
+                <center>
+                    <div style="padding-bottom: 15px; color: white">
+                        <h2><b>HỆ THỐNG TRỢ GIÚP GIÁO VIÊN CÔNG NGHỆ THÔNG TIN</b></h2>
+                    </div>
+                    <div class="search-box">
+                        <form class="search-form" action=""> <input class="form-control" placeholder="Tìm kiếm" type="text">
+                            <button class="btn btn-link search-btn"> <i class="glyphicon glyphicon-search"></i> </button>
+                        </form>
+                    </div>
+                </center>
+            </div>
+        </header>
+
+        <div id="viewport">
+            <!-- Sidebar -->
+            <div id="sidebar">
+                <header>
+                    <a href="#"><b>DANH MỤC</b></a>
+                </header>
+                <ul class="nav">
+                    <li>
+                        <a href="#">
+                            <i class="zmdi zmdi-view-dashboard"></i><b style="font-size:18px"> Giới tính</b>
+                            <ul style="list-style-type:none">
+                                <li><input type="radio" id="gtinh"> Nam</li>
+                                <li><input type="radio" id="gtinh"> Nữ</li>
+                            </ul>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="zmdi zmdi-link"></i><b style="font-size:18px"> Học vị</b>
+                            <ul style="list-style-type:none">
+                                <li><input type="radio" id="hvi"> Tiến sĩ</li>
+                                <li><input type="radio" id="hvi"> Thạc sĩ</li>
+                                <li><input type="radio" id="hvi"> Cử nhân</li>
+                            </ul>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="zmdi zmdi-widgets"></i><b style="font-size:18px"> Học hàm</b>
+                            <ul style="list-style-type:none">
+                                <li><input type="radio" id="hham"> Giáo sư</li>
+                                <li><input type="radio" id="hham"> Phó giáo sư</li>
+                            </ul>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="zmdi zmdi-calendar"></i><b style="font-size:18px"> Địa chỉ</b>
+                            <ul style="list-style-type:none">
+                                <li><input type="radio" id="dchi"> Hà Nội</li>
+                                <li><input type="radio" id="dchi"> TPHCM</li>
+                                <li><input type="radio" id="dchi"> Đà Nẵng</li>
+                                <li><input type="radio" id="dchi"> Hải Phòng</li>
+                                <li><input type="radio" id="dchi"> Thanh Hóa</li>
+                            </ul>
+                        </a>
+                    </li>
+                </ul>
+                <br>
+                <div align="center">
+                    <button class="btn">Lọc</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-md-2" id="mainLeft"></div>
+        <div class="col-lg-10 col-md-10 " id="mainRight ">
+            <div class="show_table">
+                <div>
+                    <div class="scroll_overflow ">
+                        <table class="table">
+                            <thead style="background-color: #267565; color: white">
+                                <tr>
+                                    <td><b>Tên giảng viên</b></td>
+                                    <td><b>Năm sinh</b></td>
+                                    <td><b>Địa chỉ</b></td>
+                                    <td><b>Ảnh</b></td>
+                                    <td><b>Giới tính</b></td>
+                                    <td><b>Tốt nghiệp ĐH</b></td>
+                                    <td><b>Học vị</b></td>
+                                    <td><b>Học hàm</b></td>
+                                    <td><b>Năm tốt nghiệp</b></td>
+                                </tr>
+                            </thead>
+
+                            <tbody style="background-color: white;">
+                                <tr>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>3</td>
+                                    <td>4</td>
+                                    <td>5</td>
+                                    <td>6</td>
+                                    <td>8</td>
+                                    <td>9</td>
+                                    <td>10</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+
+</html>
