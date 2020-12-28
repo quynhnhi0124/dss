@@ -15,8 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from dss_dggv.views import index, homepage
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
-    path('dss_dggv/', include('dss_dggv.urls')),
+    path('', include("dss_dggv.urls")),
 ]
