@@ -20,8 +20,35 @@ def gv_detail_view(request):
 
     return HttpResponse();
 
-def index(request):
-    object = Giangvien.objects.filter(ma_nganh="MAT130").values('ten', 'nam_sinh', 'dia_chi', 'gioi_tinh', 'ma_truong', 'tn_dh', 'tn_ch', 'hoc_vi', 'hoc_ham', 'nam_tn_dh', 'nam_tn_ch', 'nam_tn_ts', 'tn_ts')
+def gv_filter(request):
+    gioi_tinh = []
+    hoc_vi = []
+    hoc_ham = []
+    dia_chi = []
+
+    object = None
+    if request.method == "POST":
+        if request.POST.get('nam', None): gioi_tinh.append(1)
+        if request.POST.get('nu', None): gioi_tinh.append(0)
+        if request.POST.get('tiensi', None): hoc_vi.append("Tiến sĩ")
+        if request.POST.get('thacsi', None): hoc_vi.append("Thạc sĩ")
+        if request.POST.get('cunhan', None): hoc_vi.append("Cử nhân")
+        if request.POST.get('giaosu', None):
+            hoc_ham.append("Giáo sư")
+            hoc_ham.append("GS")
+        if request.POST.get('phogiaosu', None):
+            hoc_ham.append("Phó giáo sư")
+            hoc_ham.append("PSG")
+            hoc_ham.append("PGS")
+        object = Giangvien.objects.filter(ma_nganh="MAT130")
+        if len(gioi_tinh) != 0: object = object.filter(gioi_tinh__in=gioi_tinh)
+        if len(hoc_vi) != 0: object = object.filter(hoc_vi__in=hoc_vi)
+        if len(hoc_ham) != 0: object = object.filter(hoc_ham__in=hoc_ham)
+    return index(request, object)
+
+def index(request, object = None):
+    if object == None:
+        object = Giangvien.objects.filter(ma_nganh="MAT130").values('ten', 'nam_sinh', 'dia_chi', 'gioi_tinh', 'ma_truong', 'tn_dh', 'tn_ch', 'hoc_vi', 'hoc_ham', 'nam_tn_dh', 'nam_tn_ch', 'nam_tn_ts', 'tn_ts')
     # res = json.dumps(list(object), ensure_ascii=False).encode('utf8')
     # print({'list' : list(object)})
     return render(request, "pages/base.html", {'giaovien' : list(object)})

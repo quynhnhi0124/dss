@@ -39,45 +39,46 @@
                     <header>
                         <a href="#"><b>DANH MỤC</b></a>
                     </header>
-                    <form action="#">
+                    <form action="filter" method="POST">
+                        {% csrf_token %}
                         <div class="side-content">
                             <ul class="nav">
                                 <li class="nav-content">
                                     <b style="font-size:18px"> Giới tính</b>
                                     <ul style="list-style-type:none">
-                                        <li><input type="radio" value="Nam"> Nam</li>
-                                        <li><input type="radio" value="Nữ"> Nữ</li>
+                                        <li><input type="checkbox" name="nam" value="Nam"> Nam</li>
+                                        <li><input type="checkbox" name="nu" value="Nữ"> Nữ</li>
                                     </ul>
                                 </li>
                                 <li class="nav-content">
                                     <b style="font-size:18px"> Học vị</b>
                                     <ul style="list-style-type:none">
-                                        <li><input type="radio" value="Tiến sĩ"> Tiến sĩ</li>
-                                        <li><input type="radio" value="Thạc sĩ"> Thạc sĩ</li>
-                                        <li><input type="radio" value="Cử nhân"> Cử nhân</li>
+                                        <li><input type="checkbox" name="tiensi" value="Tiến sĩ"> Tiến sĩ</li>
+                                        <li><input type="checkbox" name="thacsi" value="Thạc sĩ"> Thạc sĩ</li>
+                                        <li><input type="checkbox" name="cunhan" value="Cử nhân"> Cử nhân</li>
                                     </ul>
                                 </li>
                                 <li class="nav-content">
                                     <b style="font-size:18px"> Học hàm</b>
                                     <ul style="list-style-type:none">
-                                        <li><input type="radio" value="Giáo sư"> Giáo sư</li>
-                                        <li><input type="radio" value="Phó giáo sư"> Phó giáo sư</li>
+                                        <li><input type="checkbox" name="giaosu" value="Giáo sư"> Giáo sư</li>
+                                        <li><input type="checkbox" name="phogiaosu" value="Phó giáo sư"> Phó giáo sư</li>
                                     </ul>
                                 </li>
                                 <li class="nav-content">
                                     <b style="font-size:18px"> Địa chỉ</b>
                                     <ul style="list-style-type:none">
-                                        <li><input type="radio" value="Hà Nội"> Hà Nội</li>
-                                        <li><input type="radio" value="TPHCM"> TPHCM</li>
-                                        <li><input type="radio" value="Đà Nẵng"> Đà Nẵng</li>
-                                        <li><input type="radio" value="Hải Phòng"> Hải Phòng</li>
-                                        <li><input type="radio" value="Thanh Hóa"> Thanh Hóa</li>
+                                        <li><input type="checkbox" value="Hà Nội"> Hà Nội</li>
+                                        <li><input type="checkbox" value="TPHCM"> TPHCM</li>
+                                        <li><input type="checkbox" value="Đà Nẵng"> Đà Nẵng</li>
+                                        <li><input type="checkbox" value="Hải Phòng"> Hải Phòng</li>
+                                        <li><input type="checkbox" value="Thanh Hóa"> Thanh Hóa</li>
                                     </ul>
                                 </li>
                             </ul><br>
                         </div>
                         <div class="btn-filter" align="center">
-                            <button class="btn">Lọc</button>
+                            <button type="submit" class="btn">Lọc</button>
                         </div>
                     </form>
                 </div>
