@@ -23,9 +23,10 @@
                         <h2>HỆ THỐNG TRỢ GIÚP ĐÁNH GIÁ GIÁO VIÊN CÔNG NGHỆ THÔNG TIN</h2>
                     </div>
                     <div class="search-box">
-                        <form class="search-form" action="#"> 
-                            <input class="form-control" placeholder="Tìm kiếm.." type="search">
-                            <button class="btn btn-link search-btn"> <i class="glyphicon glyphicon-search"></i> </button>
+                        <form class="search-form" action="filter" method="POST"> 
+                            {% csrf_token %}
+                            <input name="name" class="form-control" placeholder="Tìm kiếm.." type="search">
+                            <button type="submit" class="btn btn-link search-btn"> <i class="glyphicon glyphicon-search"></i> </button>
                         </form>
                     </div>
                 </center>

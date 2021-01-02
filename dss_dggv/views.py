@@ -25,9 +25,10 @@ def gv_filter(request):
     hoc_vi = []
     hoc_ham = []
     dia_chi = []
-
+    name = ""
     object = None
     if request.method == "POST":
+        name = request.POST.get('name', None)
         if request.POST.get('nam', None): gioi_tinh.append(1)
         if request.POST.get('nu', None): gioi_tinh.append(0)
         if request.POST.get('tiensi', None): hoc_vi.append("Tiến sĩ")
@@ -44,6 +45,7 @@ def gv_filter(request):
         if len(gioi_tinh) != 0: object = object.filter(gioi_tinh__in=gioi_tinh)
         if len(hoc_vi) != 0: object = object.filter(hoc_vi__in=hoc_vi)
         if len(hoc_ham) != 0: object = object.filter(hoc_ham__in=hoc_ham)
+        if len(name) != 0: object = object.filter(ten__icontains=name)
     return index(request, object)
 
 def index(request, object = None):
