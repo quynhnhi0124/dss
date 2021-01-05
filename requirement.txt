@@ -4,3 +4,4 @@ django-pyodbc-azure==2.1.0.0
 pyodbc==4.0.30
 pytz==2020.4
 sqlparse==0.4.1
+django-chartjs==2.2.1

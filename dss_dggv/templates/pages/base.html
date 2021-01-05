@@ -84,8 +84,11 @@
                     </form>
                 </div>
             </div>
-    
+            {% block content %}
             <div class="col-md-10" id="mainRight ">
+                <form action="plot">
+                    <button class="btn btn-lg">Thống kê</button>
+                </form>
                 <div class="show_table">
                     <div class="scroll_overflow">
                         <div class="table-responsive">
@@ -132,6 +135,7 @@
                     </div>
                 </div>
             </div>
+            {% endblock %}
         </div>
     </body>
 </html>

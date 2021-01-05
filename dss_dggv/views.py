@@ -1,16 +1,8 @@
 from django.shortcuts import render
-
-
-
-
 # Create your views here.
 from django.http import HttpResponse
-
 from  .models import Giangvien
-
 import json
-
-from django.shortcuts import render
 
 
 def homepage(request):
@@ -54,3 +46,7 @@ def index(request, object = None):
     # res = json.dumps(list(object), ensure_ascii=False).encode('utf8')
     # print({'list' : list(object)})
     return render(request, "pages/base.html", {'giaovien' : list(object)})
+
+def plot_res(request):
+    return render(request, 'pages/plot.html')
+
