@@ -51,14 +51,19 @@ def index(request, object = None):
     return render(request, "pages/base.html", {'giaovien' : list(object)})
 
 def plot_res(request):
+
+    labels = []
+    data = []
     
     queryset = Giangvien.objects.order_by('hoc_vi').values('hoc_vi').annotate(hoc_vi_count=Count('hoc_vi'))
 
-    data = list(queryset.values_list('hoc_vi_count', flat=True))
-    labels = list(queryset.values_list('hoc_vi', flat=True))
+    for i in queryset:
+        if(i['hoc_vi'] is not None):
+            labels.append(i['hoc_vi'])
+            data.append(i['hoc_vi_count'])
 
-    return render(request, "pages/plot.html", {
-    'labels': labels,
-    'data': data,
+    return render(request, 'pages/plot.html',{
+        'labels': labels,
+        'data': data,
     })
 
