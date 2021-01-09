@@ -49,18 +49,28 @@ def index(request, object = None):
     # res = json.dumps(list(object), ensure_ascii=False).encode('utf8')
     # print({'list' : list(object)})
     return render(request, "pages/base.html", {'giaovien' : list(object)})
-
 def plot_res(request):
-
+    filed = "hoc_vi"
+    if request.method == "POST":
+        filed = request.POST.get('plot_field', None)
     labels = []
     data = []
     
-    queryset = Giangvien.objects.filter(ma_nganh="MAT130").order_by('hoc_vi').values('hoc_vi').annotate(hoc_vi_count=Count('hoc_vi'))
-
-    for i in queryset:
-        if(i['hoc_vi'] is not None):
-            labels.append(i['hoc_vi'])
-            data.append(i['hoc_vi_count'])
+    queryset = Giangvien.objects.filter(ma_nganh="MAT130").order_by(filed).values(filed).annotate(hoc_vi_count=Count(filed))
+    if filed == 'gioi_tinh':
+        labels.append("Nam")
+        labels.append("Nữ")
+        if queryset[0][filed]:
+            data.append(queryset[0]['hoc_vi_count'])
+            data.append(queryset[1]['hoc_vi_count'])
+        else:
+            data.append(queryset[1]['hoc_vi_count'])
+            data.append(queryset[0]['hoc_vi_count'])
+    else:    
+        for i in queryset:
+            if(i[filed] is not None):
+                labels.append(i[filed])
+                data.append(i['hoc_vi_count'])
 
     return render(request, 'pages/plot.html',{
         'labels': labels,
