@@ -27,7 +27,16 @@ thead {
     margin-bottom: 10px;
 }
 
-.btn-filter {
+.form-plot form{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin: 3rem 1rem 1rem 0;
+    padding: 0 15px;
+}
+
+.btn-filter button{
+    background-color: white;
     margin: 0 0em 1.5em;
 }
 
@@ -159,6 +168,7 @@ body {
 
 
 #sidebar .side-content li.nav-content{
+    width: 100%;
     background: none;
     border-bottom: 1px solid #2d7a6a;
     color: #CFD8DC;
@@ -179,9 +189,17 @@ body {
     width: 100px;
 }
 
+.custom-select{
+    margin-right: 1rem;
+    width: 90% !important;
+}
+
+.btn-plot{
+    width: 10%;
+    float: left;
+}
 
 
 .btn-plot:hover{
-    background-color: #2d7a6a;
-    color: white;
+    background-color: #2d7a6a !important;
 }

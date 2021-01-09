@@ -2,21 +2,42 @@
 {% load static %}
 {% block title %}Thống kê{% endblock  %}
 {% block content %}
-<!-- <link rel="stylesheet" href="{% static 'css/plot.css' %}"/> -->
-
-<div class="content col-md-10">
+<link rel="stylesheet" href="{% static 'css/plot.css' %}"/>
+<style>
+  #viewport{
+    display: None;
+  }
+</style>
+<div class="container">
+  <div class="content">
+    <div class="row form-plot">
+      <form action="plot">
+          <select class="custom-select">
+              <option selected>- Chọn trường thống kê -</option>
+              <option value="">Địa chỉ</option>
+              <option value="">Giới tính</option>
+              <option value="">Tốt nghiệp đại học</option>
+              <option value="">Học vị</option>
+              <option value="">Học hàm</option>
+              <option value="">Năm tốt nghiệp đại học</option>
+              <option value="">Năm tốt nghiệp cao học</option>
+              <option value="">Năm tốt nghiệp tiến sĩ</option>
+              <option value="">Tốt nghiệp tiến sĩ</option>
+          </select>
+          <button class="btn btn-outline-dark btn-plot">Thống kê</button>
+      </form>
+  </div>
   <div class="container">
     <div class="head-thumbnail">
-        <h1 class = "display-4"  style ="margin: 45px 0;">Thống kê</h1>
+        <h1 style ="margin: 45px 0;">Thống kê</h1>
     </div>
     <div class="row col-md-8 justify-content-center">
       <canvas id="plot" data-url="{% url 'plot' %}"></canvas>
     </div>
-    <div class="col-md-4 detail">
-      <h3>Kết quả thống kê của bảng học vị</h3>
-    </div>
   </div> 
 </div>
+</div>
+
 
 
 
@@ -30,7 +51,7 @@
       type: 'bar',
       data: {
         datasets: [{
-          label: 'Hoc vi',
+          
           backgroundColor: '#449c87',
           data: {{ data|safe }},
         }],

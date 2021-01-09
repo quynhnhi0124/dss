@@ -1,0 +1,22 @@
+.form-plot form{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin: 3rem 1rem 1rem 0;
+    padding: 0 15px;
+}
+
+.custom-select{
+    margin-right: 1rem;
+    width: 90% !important;
+}
+
+.btn-plot{
+    width: 10%;
+    float: left;
+}
+
+
+.btn-plot:hover{
+    background-color: #2d7a6a !important;
+}

@@ -8,149 +8,154 @@
         <title>DSS</title>
         <link rel="stylesheet" href="{% static 'css/base.css' %}">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" /> -->
+        <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+        <link rel="stylesheet" href="{% static 'js/bootstrap.min.js' %}">
         <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
     </head>
 
     <body>
+        <div class="content">
+            <header>
+                <div class="jumbotron jumbotron-fluid header_content">
+                    <center>
+                        <div class="head-title" style="padding-bottom: 15px; color: white">
+                            <h2>HỆ THỐNG TRỢ GIÚP ĐÁNH GIÁ GIÁO VIÊN CÔNG NGHỆ THÔNG TIN</h2>
+                        </div>
+                        <div class="search-box">
+                            <form class="search-form" action="filter" method="POST"> 
+                                {% csrf_token %}
+                                <input name="name" class="form-control" placeholder="Tìm kiếm.." type="search">
+                                <button type="submit" class="btn btn-link search-btn"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+                            </form>
+                        </div>
+                    </center>
+                </div>
+            </header>
 
-        <header>
-            <div class="jumbotron jumbotron-fluid header_content">
-                <center>
-                    <div class="head-title" style="padding-bottom: 15px; color: white">
-                        <h2>HỆ THỐNG TRỢ GIÚP ĐÁNH GIÁ GIÁO VIÊN CÔNG NGHỆ THÔNG TIN</h2>
-                    </div>
-                    <div class="search-box">
-                        <form class="search-form" action="filter" method="POST"> 
+            <div class="row">
+                <div id="sidebar" class="col-md-2 col-12">
+                    <!-- Sidebar -->
+                    <div id="viewport">
+                        <header>
+                            <a href="#"><b>LỌC THEO</b></a>
+                        </header>
+                        <form action="filter" method="POST">
                             {% csrf_token %}
-                            <input name="name" class="form-control" placeholder="Tìm kiếm.." type="search">
-                            <button type="submit" class="btn btn-link search-btn"> <i class="glyphicon glyphicon-search"></i> </button>
+                            <div class="side-content">
+                                <ul class="nav">
+                                    <li class="nav-content">
+                                        <b style="font-size:18px"> Giới tính</b>
+                                        <ul style="list-style-type:none">
+                                            <li><input type="checkbox" name="nam" value="Nam"> Nam</li>
+                                            <li><input type="checkbox" name="nu" value="Nữ"> Nữ</li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-content">
+                                        <b style="font-size:18px"> Học vị</b>
+                                        <ul style="list-style-type:none">
+                                            <li><input type="checkbox" name="tiensi" value="Tiến sĩ"> Tiến sĩ</li>
+                                            <li><input type="checkbox" name="thacsi" value="Thạc sĩ"> Thạc sĩ</li>
+                                            <li><input type="checkbox" name="cunhan" value="Cử nhân"> Cử nhân</li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-content">
+                                        <b style="font-size:18px"> Học hàm</b>
+                                        <ul style="list-style-type:none">
+                                            <li><input type="checkbox" name="giaosu" value="Giáo sư"> Giáo sư</li>
+                                            <li><input type="checkbox" name="phogiaosu" value="Phó giáo sư"> Phó giáo sư</li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-content">
+                                        <b style="font-size:18px"> Địa chỉ</b>
+                                        <ul style="list-style-type:none">
+                                            <li><input type="checkbox" value="Hà Nội"> Hà Nội</li>
+                                            <li><input type="checkbox" value="TPHCM"> TPHCM</li>
+                                            <li><input type="checkbox" value="Đà Nẵng"> Đà Nẵng</li>
+                                            <li><input type="checkbox" value="Hải Phòng"> Hải Phòng</li>
+                                            <li><input type="checkbox" value="Thanh Hóa"> Thanh Hóa</li>
+                                        </ul>
+                                    </li>
+                                </ul><br>
+                            </div>
+                            <div class="btn-filter" align="center">
+                                <button type="submit" class="btn">Lọc</button>
+                            </div>
                         </form>
                     </div>
-                </center>
-            </div>
-        </header>
-
-        <div class="row content">
-            <div id="viewport">
-                <!-- Sidebar -->
-                <div id="sidebar" class="col-md-2">
-                    <header>
-                        <a href="#"><b>DANH MỤC</b></a>
-                    </header>
-                    <form action="filter" method="POST">
-                        {% csrf_token %}
-                        <div class="side-content">
-                            <ul class="nav">
-                                <li class="nav-content">
-                                    <b style="font-size:18px"> Giới tính</b>
-                                    <ul style="list-style-type:none">
-                                        <li><input type="checkbox" name="nam" value="Nam"> Nam</li>
-                                        <li><input type="checkbox" name="nu" value="Nữ"> Nữ</li>
-                                    </ul>
-                                </li>
-                                <li class="nav-content">
-                                    <b style="font-size:18px"> Học vị</b>
-                                    <ul style="list-style-type:none">
-                                        <li><input type="checkbox" name="tiensi" value="Tiến sĩ"> Tiến sĩ</li>
-                                        <li><input type="checkbox" name="thacsi" value="Thạc sĩ"> Thạc sĩ</li>
-                                        <li><input type="checkbox" name="cunhan" value="Cử nhân"> Cử nhân</li>
-                                    </ul>
-                                </li>
-                                <li class="nav-content">
-                                    <b style="font-size:18px"> Học hàm</b>
-                                    <ul style="list-style-type:none">
-                                        <li><input type="checkbox" name="giaosu" value="Giáo sư"> Giáo sư</li>
-                                        <li><input type="checkbox" name="phogiaosu" value="Phó giáo sư"> Phó giáo sư</li>
-                                    </ul>
-                                </li>
-                                <li class="nav-content">
-                                    <b style="font-size:18px"> Địa chỉ</b>
-                                    <ul style="list-style-type:none">
-                                        <li><input type="checkbox" value="Hà Nội"> Hà Nội</li>
-                                        <li><input type="checkbox" value="TPHCM"> TPHCM</li>
-                                        <li><input type="checkbox" value="Đà Nẵng"> Đà Nẵng</li>
-                                        <li><input type="checkbox" value="Hải Phòng"> Hải Phòng</li>
-                                        <li><input type="checkbox" value="Thanh Hóa"> Thanh Hóa</li>
-                                    </ul>
-                                </li>
-                            </ul><br>
-                        </div>
-                        <div class="btn-filter" align="center">
-                            <button type="submit" class="btn">Lọc</button>
-                        </div>
-                    </form>
                 </div>
-            </div>
-            {% block content %}
-            <div class="col-md-10" id="mainRight ">
-                <form action="plot">
-                    <select class="custom-select">
-                        <option selected>- Chọn trường thống kê -</option>
-                        <option value="">Địa chỉ</option>
-                        <option value="">Giới tính</option>
-                        <option value="">Tốt nghiệp đại học</option>
-                        <option value="">Học vị</option>
-                        <option value="">Học hàm</option>
-                        <option value="">Năm tốt nghiệp đại học</option>
-                        <option value="">Năm tốt nghiệp cao học</option>
-                        <option value="">Năm tốt nghiệp tiến sĩ</option>
-                        <option value="">Tốt nghiệp tiến sĩ</option>
-                    </select>
-                    <button class="btn btn-plot">Thống kê</button>
-                </form>
-                <!-- <form action="plot">
-                    <button class="btn btn-lg">Thống kê</button>
-                </form> -->
-                <div class="show_table">
-                    <div class="scroll_overflow">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead style="background-color: #267565; color: white;">
-                                    <tr>
-                                        <td><b>Tên giảng viên</b></td>
-                                        <td><b>Năm sinh</b></td>
-                                        <td><b>Địa chỉ</b></td>
-                                        <td><b>Giới tính</b></td>
-                                        <td><b>Tốt nghiệp ĐH</b></td>
-                                        <td><b>Học vị</b></td>
-                                        <td><b>Học hàm</b></td>
-                                        <td><b>Năm tốt nghiệp đại học</b></td>
-                                        <td><b>Năm tốt nghiệp cao học</b></td>
-                                        <td><b>Năm tốt nghiệp tiến sĩ</b></td>
-                                        <td><b>Tốt nghiệp tiến sĩ</b></td>
-                                    </tr>
-                                </thead>
-                                <tbody style="background-color: white;">
-                                    {% for gv in giaovien %}
+                {% block content %}
+                <div class="col-md-10 col-12" id="mainRight ">
+                    <div class="row form-plot">
+                        <form action="plot">
+                            <select class="custom-select">
+                                <option selected>- Chọn trường thống kê -</option>
+                                <option value="">Địa chỉ</option>
+                                <option value="">Giới tính</option>
+                                <option value="">Tốt nghiệp đại học</option>
+                                <option value="">Học vị</option>
+                                <option value="">Học hàm</option>
+                                <option value="">Năm tốt nghiệp đại học</option>
+                                <option value="">Năm tốt nghiệp cao học</option>
+                                <option value="">Năm tốt nghiệp tiến sĩ</option>
+                                <option value="">Tốt nghiệp tiến sĩ</option>
+                            </select>
+                            <button class="btn btn-outline-dark btn-plot">Thống kê</button>
+                        </form>
+                    </div>
+                    <!-- <form action="plot">
+                        <button class="btn btn-lg">Thống kê</button>
+                    </form> -->
+                    <div class="show_table">
+                        <div class="scroll_overflow">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead style="background-color: #267565; color: white;">
                                         <tr>
-                                            <td>{{ gv.ten }}</td>
-                                            <td>{{ gv.nam_sinh }}</td>
-                                            <td>{{ gv.dia_chi }}</td>
-                                            <td>{% if gv.gioi_tinh == 1%}
-                                                    Nam
-                                                {% else %}
-                                                    Nữ
-                                                {% endif %}
-                                            </td>
-                                            <td>{{ gv.tn_dh }}</td>
-                                            <td>{{ gv.hoc_vi }}</td>
-                                            <td>{{ gv.hoc_ham }}</td>
-                                            <td>{{ gv.nam_tn_dh }}</td>
-                                            <td>{{ gv.nam_tn_ch }}</td>
-                                            <td>{{ gv.nam_tn_ts }}</td>
-                                            <td>{{ gv.tn_ts }}</td>
+                                            <td><b>Tên giảng viên</b></td>
+                                            <td><b>Năm sinh</b></td>
+                                            <td><b>Địa chỉ</b></td>
+                                            <td><b>Giới tính</b></td>
+                                            <td><b>Tốt nghiệp ĐH</b></td>
+                                            <td><b>Học vị</b></td>
+                                            <td><b>Học hàm</b></td>
+                                            <td><b>Năm tốt nghiệp đại học</b></td>
+                                            <td><b>Năm tốt nghiệp cao học</b></td>
+                                            <td><b>Năm tốt nghiệp tiến sĩ</b></td>
+                                            <td><b>Tốt nghiệp tiến sĩ</b></td>
                                         </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody style="background-color: white;">
+                                        {% for gv in giaovien %}
+                                            <tr>
+                                                <td>{{ gv.ten }}</td>
+                                                <td>{{ gv.nam_sinh }}</td>
+                                                <td>{{ gv.dia_chi }}</td>
+                                                <td>{% if gv.gioi_tinh == 1%}
+                                                        Nam
+                                                    {% else %}
+                                                        Nữ
+                                                    {% endif %}
+                                                </td>
+                                                <td>{{ gv.tn_dh }}</td>
+                                                <td>{{ gv.hoc_vi }}</td>
+                                                <td>{{ gv.hoc_ham }}</td>
+                                                <td>{{ gv.nam_tn_dh }}</td>
+                                                <td>{{ gv.nam_tn_ch }}</td>
+                                                <td>{{ gv.nam_tn_ts }}</td>
+                                                <td>{{ gv.tn_ts }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
+                {% endblock %}
             </div>
-            {% endblock %}
-        </div>
+        </div> 
     </body>
 </html>
