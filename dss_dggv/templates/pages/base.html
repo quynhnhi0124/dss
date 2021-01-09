@@ -87,8 +87,23 @@
             {% block content %}
             <div class="col-md-10" id="mainRight ">
                 <form action="plot">
-                    <button class="btn btn-lg">Thống kê</button>
+                    <select class="custom-select">
+                        <option selected>- Chọn trường thống kê -</option>
+                        <option value="">Địa chỉ</option>
+                        <option value="">Giới tính</option>
+                        <option value="">Tốt nghiệp đại học</option>
+                        <option value="">Học vị</option>
+                        <option value="">Học hàm</option>
+                        <option value="">Năm tốt nghiệp đại học</option>
+                        <option value="">Năm tốt nghiệp cao học</option>
+                        <option value="">Năm tốt nghiệp tiến sĩ</option>
+                        <option value="">Tốt nghiệp tiến sĩ</option>
+                    </select>
+                    <button class="btn btn-plot">Thống kê</button>
                 </form>
+                <!-- <form action="plot">
+                    <button class="btn btn-lg">Thống kê</button>
+                </form> -->
                 <div class="show_table">
                     <div class="scroll_overflow">
                         <div class="table-responsive">
