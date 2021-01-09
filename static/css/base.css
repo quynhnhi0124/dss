@@ -178,3 +178,10 @@ body {
 #sidebar .btn {
     width: 100px;
 }
+
+
+
+.btn-plot:hover{
+    background-color: #2d7a6a;
+    color: white;
+}

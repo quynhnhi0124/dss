@@ -66,7 +66,7 @@
                                         <li><input type="checkbox" name="phogiaosu" value="Phó giáo sư"> Phó giáo sư</li>
                                     </ul>
                                 </li>
-                                <li class="nav-content">
+                                <!-- <li class="nav-content">
                                     <b style="font-size:18px"> Địa chỉ</b>
                                     <ul style="list-style-type:none">
                                         <li><input type="checkbox" value="Hà Nội"> Hà Nội</li>
@@ -75,7 +75,7 @@
                                         <li><input type="checkbox" value="Hải Phòng"> Hải Phòng</li>
                                         <li><input type="checkbox" value="Thanh Hóa"> Thanh Hóa</li>
                                     </ul>
-                                </li>
+                                </li> -->
                             </ul><br>
                         </div>
                         <div class="btn-filter" align="center">
@@ -86,9 +86,25 @@
             </div>
             {% block content %}
             <div class="col-md-10" id="mainRight ">
-                <form action="plot">
-                    <button class="btn btn-lg">Thống kê</button>
+                <form action="plot" method="POST">
+                    {% csrf_token %}
+                    <select class="custom-select" name="plot_field" id="plot_field">
+                        <option selected>- Chọn trường thống kê -</option>
+                        <option value="dia_chi">Địa chỉ</option>
+                        <option value="gioi_tinh">Giới tính</option>
+                        <option value="tn_dh">Tốt nghiệp đại học</option>
+                        <option value="hoc_vi">Học vị</option>
+                        <option value="hoc_ham">Học hàm</option>
+                        <option value="nam_tn_dh">Năm tốt nghiệp đại học</option>
+                        <option value="nam_tn_ch">Năm tốt nghiệp cao học</option>
+                        <option value="nam_tn_ts">Năm tốt nghiệp tiến sĩ</option>
+                        <option value="tn_ts">Tốt nghiệp tiến sĩ</option>
+                    </select>
+                    <button class="btn btn-plot">Thống kê</button>
                 </form>
+                <!-- <form action="plot">
+                    <button class="btn btn-lg">Thống kê</button>
+                </form> -->
                 <div class="show_table">
                     <div class="scroll_overflow">
                         <div class="table-responsive">

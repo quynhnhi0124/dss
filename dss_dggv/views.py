@@ -1,9 +1,12 @@
 from django.shortcuts import render
 # Create your views here.
+from django.db.models import Sum
+from django.http import JsonResponse
 from django.http import HttpResponse
 from  .models import Giangvien
+from django.db.models import Count
 import json
-
+from django.db.models import Q
 
 def homepage(request):
     return render(request, "pages/base.html")
@@ -37,7 +40,7 @@ def gv_filter(request):
         if len(gioi_tinh) != 0: object = object.filter(gioi_tinh__in=gioi_tinh)
         if len(hoc_vi) != 0: object = object.filter(hoc_vi__in=hoc_vi)
         if len(hoc_ham) != 0: object = object.filter(hoc_ham__in=hoc_ham)
-        if len(name) != 0: object = object.filter(ten__icontains=name)
+        if name != None: object = object.filter(Q(ten__icontains=name) | Q(gioi_tinh__icontains=name) | Q(hoc_vi__icontains=name) | Q(hoc_ham__icontains=name) | Q(dia_chi__icontains=name))
     return index(request, object)
 
 def index(request, object = None):
@@ -48,5 +51,30 @@ def index(request, object = None):
     return render(request, "pages/base.html", {'giaovien' : list(object)})
 
 def plot_res(request):
-    return render(request, 'pages/plot.html')
+    filed = "hoc_vi"
+    if request.method == "POST":
+        filed = request.POST.get('plot_field', None)
+    labels = []
+    data = []
+    
+    queryset = Giangvien.objects.filter(ma_nganh="MAT130").order_by(filed).values(filed).annotate(hoc_vi_count=Count(filed))
+    if filed == 'gioi_tinh':
+        labels.append("Nam")
+        labels.append("Nữ")
+        if queryset[0][filed]:
+            data.append(queryset[0]['hoc_vi_count'])
+            data.append(queryset[1]['hoc_vi_count'])
+        else:
+            data.append(queryset[1]['hoc_vi_count'])
+            data.append(queryset[0]['hoc_vi_count'])
+    else:    
+        for i in queryset:
+            if(i[filed] is not None):
+                labels.append(i[filed])
+                data.append(i['hoc_vi_count'])
+
+    return render(request, 'pages/plot.html',{
+        'labels': labels,
+        'data': data,
+    })
 

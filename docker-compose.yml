@@ -1,0 +1,21 @@
+version: "2"
+services:
+    db:
+        image: microsoft/mssql-server-linux
+        environment:
+        - ACCEPT_EULA=Y
+        - SA_PASSWORD=Dss@1234
+        ports:
+        - "1433:1433"
+    # phpmyadmin:
+    #     image: phpmyadmin/phpmyadmin
+    #     links: 
+    #         - db:db
+    #     ports:
+    #         - 8000:80
+    #     environment:
+    #         MYSQL_USER: root
+    #         MYSQL_PASSWORD: Dss@1234
+    #         MYSQL_ROOT_PASSWORD: Dss@1234
+volumes:
+    persistent:
