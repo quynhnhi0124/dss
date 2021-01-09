@@ -15,7 +15,24 @@
         <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
     </head>
+    <style>
+        .form-plot form{
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+        margin: 3rem 1rem 1rem 0;
+        padding: 0 15px;
+        }
+        #sidebar .side-content li.nav-content{
+            width: 100%;
+            background: none;
+            border-bottom: 1px solid #2d7a6a;
+            color: #CFD8DC;
+            font-size: 14px;
+            padding: 16px 24px;
+        }   
 
+    </style>
     <body>
         <div class="content">
             <header>
@@ -110,6 +127,7 @@
                         <button class="btn btn-lg">Thống kê</button>
                     </form> -->
                     <div class="show_table">
+                        <p> Tổng số  lượng giảng viên: {{ soluong }}</p>
                         <div class="scroll_overflow">
                             <div class="table-responsive">
                                 <table class="table">
@@ -122,9 +140,9 @@
                                             <td><b>Tốt nghiệp ĐH</b></td>
                                             <td><b>Học vị</b></td>
                                             <td><b>Học hàm</b></td>
-                                            <td><b>Năm tốt nghiệp đại học</b></td>
-                                            <td><b>Năm tốt nghiệp cao học</b></td>
-                                            <td><b>Năm tốt nghiệp tiến sĩ</b></td>
+                                            <td><b>Năm TN ĐH</b></td>
+                                            <td><b>Năm TN CH</b></td>
+                                            <td><b>Năm TN TS</b></td>
                                             <td><b>Tốt nghiệp tiến sĩ</b></td>
                                         </tr>
                                     </thead>
